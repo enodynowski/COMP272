@@ -35,99 +35,64 @@ class LUCLinkedList {// a Singly Linked List
             currNode = currNode.next; // Go to next node
         }
     }
-    // Method to sum the data in each node
-    public int addData(){
-        //initialize the sum
+
+    public int sumList() {
+        Node currNode = head;
         int sum = 0;
-        //check if there's any data
-        if(head == null){
-            sum = 0;
-            System.out.println("List is empty");
-        //assuming there is, iterate over the list and add all the data
-        } else {
-            Node iterator = head;
-            while (iterator != null){
-                sum = sum + iterator.data;
-                iterator = iterator.next;
-            }
-        } 
-        //return the sum
+        while (currNode != null){
+            sum += currNode.data;
+            currNode = currNode.next;
+        }
         return sum;
     }
-    
-    //Method to determine the maximum data value in the list
-    public int maxData(){
-        //intialize the max variable
-        int max = 0; 
-        //check if theres anything in the list
-        if (head == null){
-            max = 0;
-            System.out.println("List is empty");
-        //assumign there is, iterate the list and check if each data value is greater than the stored max
-        } else {
-            Node iterator = head;
-            max = head.data;
-            while (iterator != null){
-                if(iterator.data > max){
-                    max = iterator.data; 
-                }
-            iterator = iterator.next;
+
+    public int maxData() {
+        Node currNode = head;
+        int max = currNode.data;
+        while (currNode.next != null){
+            if (currNode.next.data > currNode.data){
+                max = currNode.next.data;
             }
+            currNode = currNode.next;
         }
-        //return the maximum value
         return max;
     }
-    public void printEvens(){
-        //check if theres anything in the list
-        if (head == null){
-            System.out.println("List is empty");
-        //assumign there is, iterate the list and check if each data value is greater than the stored max
-        } else {
-            Node iterator = head;
-            while (iterator != null){
-                if(iterator.data %2 == 0){
-                    System.out.println(iterator.data);
+
+    public String printEvens(){
+        Node currNode = head;
+        String evens = "";
+        while (currNode.next != null){
+            if (currNode.data %2 == 0) {
+                evens += currNode.data + " ";
+            }
+            currNode = currNode.next;
+        }
+        return evens;
+    }
+    public void removeValue(int val)
+        {
+            Node currNode = head;
+            Node prevNode = null;
+            while (currNode != null && currNode.data == val) 
+            {
+                head = currNode.next;
+                currNode = head; 
+            }
+            while (currNode != null) 
+            {
+                while (currNode != null && currNode.data != val) 
+                {
+                    prevNode = currNode;
+                    currNode = currNode.next;
                 }
-                iterator = iterator.next;
+                if (currNode == null)
+                    return;
+                prevNode.next = currNode.next;
+                currNode = prevNode.next;
             }
         }
-        
-    }
-
-    public void removeValue(int target){
-        // Check if the list is empty
-        if (head == null) {
-            return;
-        }
-
-        // Handle cases where the target value is at the beginning of the list
-        while (head != null && head.data == target) {
-            head = head.next;
-        }
-
-        Node current = head;
-        Node prev = null;
-
-        // Traverse the list and remove nodes with matching data
-        while (current != null) {
-            if (current.data == target) {
-                // Remove the current node
-                prev.next = current.next;
-                current = current.next;
-            } else {
-                // Move to the next node
-                prev = current;
-                current = current.next;
-            }
-        }
-    }
-
-    
 
 }
-
-
-
 
 public class LUCLinkedListMain {
     public static void main(String[] args)
@@ -141,13 +106,15 @@ public class LUCLinkedListMain {
         list.insert(3);
         list.insert(4);
         list.insert(2);
-        list.insert(2);
+        list.insert(9);
         list.printList(); // Print the LinkedList
         System.out.println();
-        System.out.println("the sum is: " + list.addData());
-        System.out.println("the max value is: " + list.maxData());
-        list.printEvens();
+        System.out.println("the sum is: " + list.sumList());
+        System.out.println("the max value is " + list.maxData());
+        System.out.println("the even values are: " + list.printEvens());
         list.removeValue(2);
         list.printList();
+
+
     }
 }
