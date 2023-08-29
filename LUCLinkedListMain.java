@@ -35,7 +35,7 @@ class LUCLinkedList {// a Singly Linked List
             currNode = currNode.next; // Go to next node
         }
     }
-
+    //method to add all the elements of a list
     public int sumList() {
         Node currNode = head;
         int sum = 0;
@@ -45,7 +45,7 @@ class LUCLinkedList {// a Singly Linked List
         }
         return sum;
     }
-
+    //method to determine what the maximum value in the linked list is
     public int maxData() {
         Node currNode = head;
         int max = currNode.data;
@@ -57,7 +57,7 @@ class LUCLinkedList {// a Singly Linked List
         }
         return max;
     }
-
+    //method to print only the even numbers in the linked list
     public String printEvens(){
         Node currNode = head;
         String evens = "";
@@ -69,10 +69,13 @@ class LUCLinkedList {// a Singly Linked List
         }
         return evens;
     }
+    //method to remove all occurrences of a specific value in the linked list
     public void removeValue(int val)
         {
+            //set the head and keep track of the previous
             Node currNode = head;
             Node prevNode = null;
+            //if the head node is the value
             while (currNode != null && currNode.data == val) 
             {
                 head = currNode.next;
@@ -80,13 +83,17 @@ class LUCLinkedList {// a Singly Linked List
             }
             while (currNode != null) 
             {
+                //assuming the head node is not the value...
                 while (currNode != null && currNode.data != val) 
                 {
+                    //iterate through the list
                     prevNode = currNode;
                     currNode = currNode.next;
                 }
+                //stop if empty
                 if (currNode == null)
                     return;
+                //if the val is the current node, snip the current node out
                 prevNode.next = currNode.next;
                 currNode = prevNode.next;
             }
