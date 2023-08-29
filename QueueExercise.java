@@ -52,6 +52,7 @@ public class QueueExercise {
         queue.add(front);
 
     }
+    //method to reverse a certain amount, K, elements of a queue
     public static void reverseKElements(Queue<Integer> queue, int k) {
         if (k <= 0 || k > queue.size()) {
             throw new IllegalArgumentException("Invalid value of k");
@@ -75,6 +76,7 @@ public class QueueExercise {
             queue.offer(queue.poll());
         }
     }
+    //method to check if a given input array of 0s and 1s is a valid operational input for a queue
     public static boolean canCompleteOperations(int[] operations) {
         int offerCount = 0;
         int pollCount = 0;
