@@ -78,15 +78,19 @@ public class QueueExercise {
     }
     //method to check if a given input array of 0s and 1s is a valid operational input for a queue
     public static boolean canCompleteOperations(int[] operations) {
+        //if there are more polls than offers, then the operation is not valid
+        //create two vars to store how many of each we have
         int offerCount = 0;
         int pollCount = 0;
+            //iterate through each number in the array...
             for (int i : operations) {
+                //check if it is a poll or an offer and increment the appropriate var
                 if ( i == 1 ){
                     offerCount++;
                 } else {
                     pollCount++;
                 }
-                
+                //check if its invalid
                 if (offerCount < pollCount){
                     return false;
                 }
