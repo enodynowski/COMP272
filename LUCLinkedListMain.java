@@ -57,17 +57,17 @@ class LUCLinkedList {// a Singly Linked List
         }
         return max;
     }
-    //method to print only the even numbers in the linked list
-    public String printEvens(){
+   
+    public void printEvens(){
         Node currNode = head;
-        String evens = "";
+        int index = 0;
         while (currNode.next != null){
-            if (currNode.data %2 == 0) {
-                evens += currNode.data + " ";
+            if (index %2 == 0){
+                System.out.println(currNode.data);
             }
+            index++;
             currNode = currNode.next;
         }
-        return evens;
     }
     //method to remove all occurrences of a specific value in the linked list
     public void removeValue(int val)
@@ -118,7 +118,7 @@ public class LUCLinkedListMain {
         System.out.println();
         System.out.println("the sum is: " + list.sumList());
         System.out.println("the max value is " + list.maxData());
-        System.out.println("the even values are: " + list.printEvens());
+        list.printEvens();
         list.removeValue(2);
         list.printList();
 
