@@ -59,22 +59,25 @@ public class StackExercise {
         boolean b = true;
         Stack<Character> reversed = new Stack<Character>();
         Stack<Character> stack = new Stack<Character>();
-        Stack<Character> temp = (Stack<Character>)stack.clone();
         //add the characters from our input string to a stack
         for (char c : str.toCharArray()) {
             stack.push(c);
         }
+        Stack<Character> temp = (Stack<Character>)stack.clone();
+
         //reverse the stack by popping the elements into a new one
         while (!stack.isEmpty()){
             reversed.push(stack.pop());
         }
         //for each character in the original stack...
         for (Character character : temp) {
+            
             //check if it is the same as the corresponding character at the same index in the reversed array 
             if(reversed.elementAt(temp.indexOf(character)) != character){
                 //if not, then it isnt a palindrome
                 b = false;
             }
+            
         }
         return b;
     }
